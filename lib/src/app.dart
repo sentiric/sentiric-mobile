@@ -10,31 +10,25 @@ class SentiricApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
-
     return MaterialApp.router(
       title: 'Sentiric Mobile',
       debugShowCheckedModeBanner: false,
-
-      // Light Theme
       theme: ThemeData(
         brightness: Brightness.light,
-        colorSchemeSeed: Colors.indigo,
-        scaffoldBackgroundColor: Colors.grey.shade50,
+        colorSchemeSeed: const Color(0xFF3F51B5),
+        scaffoldBackgroundColor: Colors.grey.shade100,
         textTheme: GoogleFonts.interTextTheme(),
         useMaterial3: true,
       ),
-
-      // Dark Theme
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        colorSchemeSeed: Colors.indigo,
-        scaffoldBackgroundColor: const Color(0xFF0D1117),
+        colorSchemeSeed: const Color(0xFF7986CB),
+        scaffoldBackgroundColor: const Color(0xFF121212),
+        cardColor: const Color(0xFF1E1E1E),
         textTheme: GoogleFonts.interTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
-        ),
+            ThemeData(brightness: Brightness.dark).textTheme),
         useMaterial3: true,
       ),
-
       themeMode: themeMode,
       routerConfig: appRouter,
     );
