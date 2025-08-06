@@ -14,22 +14,29 @@ class SentiricApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Sentiric Mobile',
       debugShowCheckedModeBanner: false,
+
+      // Light Theme
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.indigo,
-        scaffoldBackgroundColor: Colors.grey.shade100,
+        colorSchemeSeed: Colors.indigo,
+        scaffoldBackgroundColor: Colors.grey.shade50,
         textTheme: GoogleFonts.interTextTheme(),
+        useMaterial3: true,
       ),
+
+      // Dark Theme
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.indigo,
-        scaffoldBackgroundColor: const Color(0xFF111827),
+        colorSchemeSeed: Colors.indigo,
+        scaffoldBackgroundColor: const Color(0xFF0D1117),
         textTheme: GoogleFonts.interTextTheme(
           ThemeData(brightness: Brightness.dark).textTheme,
         ),
+        useMaterial3: true,
       ),
+
       themeMode: themeMode,
-      routerConfig: goRouter,
+      routerConfig: appRouter,
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// StateNotifierProvider, durumunu değiştirebilen bir provider türüdür.
 final themeProvider = StateNotifierProvider<ThemeNotifier, ThemeMode>((ref) {
   return ThemeNotifier();
 });
@@ -15,8 +16,9 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
 
   Future<void> _loadTheme() async {
     final prefs = await SharedPreferences.getInstance();
+    // Kayıtlı tema varsa onu kullan, yoksa sistem tercihini kullan.
     final themeIndex = prefs.getInt(_themeKey);
-    if (themeIndex != null) {
+    if (themeIndex != null && themeIndex < ThemeMode.values.length) {
       state = ThemeMode.values[themeIndex];
     }
   }
@@ -28,6 +30,7 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
   }
 
   void toggleTheme() {
+    // Eğer mevcut tema dark ise light'a, değilse dark'a geç.
     setTheme(state == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark);
   }
 }

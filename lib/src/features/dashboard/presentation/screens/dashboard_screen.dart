@@ -12,16 +12,20 @@ class DashboardScreen extends ConsumerWidget {
         title: const Text('Yönetici Paneli'),
         actions: [
           IconButton(
-            icon: Icon(
-              ref.watch(themeProvider) == ThemeMode.dark
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
+            icon: Icon(ref.watch(themeProvider) == ThemeMode.dark
+                ? Icons.light_mode_outlined
+                : Icons.dark_mode_outlined),
             onPressed: () => ref.read(themeProvider.notifier).toggleTheme(),
+            tooltip: 'Temayı Değiştir',
           ),
         ],
       ),
-      body: const Center(child: Text('Canlı metrikler burada gösterilecek.')),
+      body: const Center(
+        child: Text(
+          'Canlı metrikler burada gösterilecek.',
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
     );
   }
 }
